@@ -12,91 +12,113 @@ using System.Text;
 
 namespace WindowsContronlDemov0._0._1
 {
+    
     class WindowLike
     {
-        public struct RECT
-        {
-            public int Left;       // Specifies the x-coordinate of the upper-left corner of the rectangle.
-            public int Top;        // Specifies the y-coordinate of the upper-left corner of the rectangle.
-            public int Right;      // Specifies the x-coordinate of the lower-right corner of the rectangle.
-            public int Bottom;     // Specifies the y-coordinate of the lower-right corner of the rectangle.
-
-        }
-
-        [StructLayout(LayoutKind.Sequential)]
-        public struct WINDOWINFO
-        {
-            public uint cbSize;
-            public RECT rcWindow;
-            public RECT rcClient;
-            public uint dwStyle;
-            public uint dwExStyle;
-            public uint dwWindowStatus;
-            public uint cxWindowBorders;
-            public uint cyWindowBorders;
-            public ushort atomWindowType;
-            public ushort wCreatorVersion;
-
-            public WINDOWINFO(Boolean? filler)
-             : this()   // Allows automatic initialization of "cbSize" with "new WINDOWINFO(null/true/false)".
-            {
-                cbSize = (UInt32)(Marshal.SizeOf(typeof(WINDOWINFO)));
-            }
-
-        }
-
-        class Win32
-        {
-            /// <summary>
-            /// Gets the foreground window.
-            /// </summary>
-            /// <returns></returns>
-            [DllImport("user32.dll", CharSet = CharSet.Auto, ExactSpelling = true)]
-            public static extern IntPtr GetForegroundWindow();
-
-            /// <summary>
-            /// Gets the window info.
-            /// </summary>
-            /// <param name="hwnd">The HWND.</param>
-            /// <param name="pwi">The pwi.</param>
-            /// <returns></returns>
-            [return: MarshalAs(UnmanagedType.Bool)]
-            [DllImport("user32.dll", SetLastError = true)]
-            public static extern bool GetWindowInfo(IntPtr hwnd, ref WINDOWINFO pwi);
-
-            /// <summary>
-            /// Gets the window text.
-            /// </summary>
-            /// <param name="hWnd">The h WND.</param>
-            /// <param name="text">The text.</param>
-            /// <param name="count">The count.</param>
-            /// <returns></returns>
-            [DllImport("user32.dll")]
-            public static extern int GetWindowText(IntPtr hWnd, StringBuilder text, int count);
-
-            /// <summary>
-            /// Creates the round rect RGN.
-            /// </summary>
-            /// <param name="nLeftRect">The n left rect.</param>
-            /// <param name="nTopRect">The n top rect.</param>
-            /// <param name="nRightRect">The n right rect.</param>
-            /// <param name="nBottomRect">The n bottom rect.</param>
-            /// <param name="nWidthEllipse">The n width ellipse.</param>
-            /// <param name="nHeightEllipse">The n height ellipse.</param>
-            /// <returns></returns>
-            [DllImport("Gdi32.dll", EntryPoint = "CreateRoundRectRgn")]
-            public static extern IntPtr CreateRoundRectRgn
-             (
-              int nLeftRect,
-              int nTopRect, // y-coordinate of upper-left corner
-              int nRightRect, // x-coordinate of lower-right corner
-              int nBottomRect, // y-coordinate of lower-right corner
-              int nWidthEllipse, // height of ellipse
-              int nHeightEllipse // width of ellipse
-             );
-        }
+        
         static int count = 0;
-       
+        //[StructLayout(LayoutKind.Sequential)]
+        //public struct RECT
+        //{
+        //    public int Left, Top, Right, Bottom;
+
+        //    public RECT(int left, int top, int right, int bottom)
+        //    {
+        //        Left = left;
+        //        Top = top;
+        //        Right = right;
+        //        Bottom = bottom;
+        //    }
+
+        //    public RECT(System.Drawing.Rectangle r) : this(r.Left, r.Top, r.Right, r.Bottom) { }
+
+        //    public int X
+        //    {
+        //        get { return Left; }
+        //        set { Right -= (Left - value); Left = value; }
+        //    }
+
+        //    public int Y
+        //    {
+        //        get { return Top; }
+        //        set { Bottom -= (Top - value); Top = value; }
+        //    }
+
+        //    public int Height
+        //    {
+        //        get { return Bottom - Top; }
+        //        set { Bottom = value + Top; }
+        //    }
+
+        //    public int Width
+        //    {
+        //        get { return Right - Left; }
+        //        set { Right = value + Left; }
+        //    }
+
+        //    public System.Drawing.Point Location
+        //    {
+        //        get { return new System.Drawing.Point(Left, Top); }
+        //        set { X = value.X; Y = value.Y; }
+        //    }
+
+        //    public System.Drawing.Size Size
+        //    {
+        //        get { return new System.Drawing.Size(Width, Height); }
+        //        set { Width = value.Width; Height = value.Height; }
+        //    }
+
+        //    public static implicit operator System.Drawing.Rectangle(RECT r)
+        //    {
+        //        return new System.Drawing.Rectangle(r.Left, r.Top, r.Width, r.Height);
+        //    }
+
+        //    public static implicit operator RECT(System.Drawing.Rectangle r)
+        //    {
+        //        return new RECT(r);
+        //    }
+
+        //    public static bool operator ==(RECT r1, RECT r2)
+        //    {
+        //        return r1.Equals(r2);
+        //    }
+
+        //    public static bool operator !=(RECT r1, RECT r2)
+        //    {
+        //        return !r1.Equals(r2);
+        //    }
+
+        //    public bool Equals(RECT r)
+        //    {
+        //        return r.Left == Left && r.Top == Top && r.Right == Right && r.Bottom == Bottom;
+        //    }
+
+        //    public override bool Equals(object obj)
+        //    {
+        //        if (obj is RECT)
+        //            return Equals((RECT)obj);
+        //        else if (obj is System.Drawing.Rectangle)
+        //            return Equals(new RECT((System.Drawing.Rectangle)obj));
+        //        return false;
+        //    }
+
+        //    public override int GetHashCode()
+        //    {
+        //        return ((System.Drawing.Rectangle)this).GetHashCode();
+        //    }
+
+        //    public override string ToString()
+        //    {
+        //        return string.Format(System.Globalization.CultureInfo.CurrentCulture, "{{Left={0},Top={1},Right={2},Bottom={3}}}", Left, Top, Right, Bottom);
+        //    }
+        //}
+        public struct Rect
+        {
+            public int Left;
+            public int Top;
+            public int Right;
+            public int Bottom;
+        }
         [StructLayout(LayoutKind.Sequential)]//定义与API相兼容结构体，实际上是一种内存转换  
         public struct POINTAPI
         {
@@ -145,7 +167,11 @@ namespace WindowsContronlDemov0._0._1
         public extern static IntPtr FindWindow(string lpClassName, string lpWindowName);
 
         [System.Runtime.InteropServices.DllImportAttribute("user32.dll")]
-        public static extern int GetWindowRect(IntPtr hWnd, out Rectangle lpRect);
+        public static extern int GetWindowRect(IntPtr hWnd, out Rect lpRect);
+        [DllImport("user32.dll")]
+        public static extern bool GetClientRect(IntPtr hWnd, out Rect lpRect);
+
+
 
         [System.Runtime.InteropServices.DllImportAttribute("user32.dll")]
         public extern static IntPtr GetDC(IntPtr hWnd);
@@ -170,15 +196,10 @@ namespace WindowsContronlDemov0._0._1
             //string[] s = { handle_name.ToString(), window_name.ToString() };
             return hwnd;
         }
-        static public Bitmap get_window_pic(IntPtr hwnd1)
+        static public Bitmap get_window_pic(IntPtr hwnd1, int w, int h)
         {
-            Rectangle rect = new Rectangle();
-            WINDOWINFO info = new WINDOWINFO();
-            info.cbSize = (uint)Marshal.SizeOf(info);
-            Win32.GetWindowInfo(hwnd1, ref info);
-            int width = info.rcWindow.Right - info.rcWindow.Left;
-            int height = info.rcWindow.Bottom - info.rcWindow.Top;
-            MessageBox.Show(width.ToString()+','+height.ToString());
+
+            Rect rect = new Rect();
             //IntPtr hwnd1 = FindWindow(handle_name, window_name);
             if (!hwnd1.Equals(IntPtr.Zero))
             {
@@ -186,13 +207,15 @@ namespace WindowsContronlDemov0._0._1
                 GetWindowRect(hwnd1, out rect);  //获得目标窗体的大小  
                 //int SW = Screen.PrimaryScreen.Bounds.Width; 
                 //MessageBox.Show(rect.Right.ToString() + "," + rect.Left.ToString() + "," + rect.Width.ToString());
-                Bitmap QQPic = new Bitmap(rect.Width, rect.Height );
+                int width = w == 0 ? rect.Right - rect.Left : w;
+                int height = h == 0 ? rect.Bottom - rect.Top : h;
+                Bitmap QQPic = new Bitmap(width, height );
                 
                 //MessageBox.Show((rect.Width - rect.Left).ToString() + "，" + (rect.Height - rect.Top).ToString());
                 Graphics g1 = Graphics.FromImage(QQPic);
                 IntPtr hdc1 = GetDC(hwnd1);
                 IntPtr hdc2 = g1.GetHdc();  //得到Bitmap的DC  
-                BitBlt(hdc2, 0, 0, rect.Width, rect.Height , hdc1, 0, 0, 13369376);
+                BitBlt(hdc2, 0, 0, width, height, hdc1, 0, 0, 13369376);
                 g1.ReleaseHdc(hdc2);  //释放掉Bitmap的DC  
                 string filename = @".\pic\"+count + ".jpg";
                 //QQPic.Save(filename, System.Drawing.Imaging.ImageFormat.Jpeg);

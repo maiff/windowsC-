@@ -5,7 +5,6 @@ using System.ComponentModel;
 using System.Windows.Forms;
 using System.Data;
 using System.Drawing.Imaging;
-using System.Threading;
 using System.Runtime.InteropServices;
 using System.Text;
 using System.Collections.Generic;
@@ -192,14 +191,17 @@ namespace WindowsContronlDemov0._0._1
             if (this.now_handle_hwnd == 0) MessageBox.Show("请先获取句柄等相关信息");
             else
             {
-                Bitmap pic = WindowLike.get_window_pic(new IntPtr(this.now_handle_hwnd));
+                int w = this.W.Text == "" ? 0 : Int32.Parse(this.W.Text) ;
+                int h = this.H.Text == "" ? 0 : Int32.Parse(this.H.Text);
+                Bitmap pic = WindowLike.get_window_pic(new IntPtr(this.now_handle_hwnd), w, h);
                 if (pic != null)
                 {
 
-                    this.now_log = "保存成功";
+                    this.now_log = "保存成功" + pic.Width.ToString() + "x" + pic.Height.ToString();
+ 
                     this.imageView.Image = pic;
 
-                    Rect rect = new Rect();
+                    FormRect rect = new FormRect();
                     rect = Util.getFormRect(this);
 
                     //int oldWidth_imageView = this.imageView.Width;

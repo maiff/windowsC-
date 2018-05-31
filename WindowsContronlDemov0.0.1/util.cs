@@ -11,9 +11,9 @@ namespace WindowsContronlDemov0._0._1
 {
     class Util
     {
-        public static Rect getFormRect(Form form)
+        public static FormRect getFormRect(Form form)
         {
-            Rect rect = new Rect();
+            FormRect rect = new FormRect();
             rect.width = form.Width;
             rect.height = form.Height;
             return rect;
@@ -70,7 +70,7 @@ namespace WindowsContronlDemov0._0._1
             }
         }
     }
-    class Rect
+    class FormRect
     {
         public int width = 0;
         public int height = 0;

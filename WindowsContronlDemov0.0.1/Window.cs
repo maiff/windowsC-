@@ -194,6 +194,13 @@ namespace WindowsContronlDemov0._0._1
             //GetClassName(hwnd, handle_name, 256);
             //MessageBox.Show(name.ToString());
             //string[] s = { handle_name.ToString(), window_name.ToString() };
+            Rect rect = new Rect();
+            GetWindowRect(new IntPtr(hwnd), out rect);
+            Store.w_left = rect.Left;
+            Store.w_right = rect.Right;
+            Store.w_top = rect.Top;
+            Store.w_bottom = rect.Bottom;
+
             return hwnd;
         }
         static public Bitmap get_window_pic(IntPtr hwnd1, int w, int h)
@@ -204,11 +211,14 @@ namespace WindowsContronlDemov0._0._1
             if (!hwnd1.Equals(IntPtr.Zero))
             {
                 //MessageBox.Show("1！");
+                int SH = Screen.PrimaryScreen.Bounds.Height;
+                int SW = Screen.PrimaryScreen.Bounds.Width;
                 GetWindowRect(hwnd1, out rect);  //获得目标窗体的大小  
                 //int SW = Screen.PrimaryScreen.Bounds.Width; 
                 //MessageBox.Show(rect.Right.ToString() + "," + rect.Left.ToString() + "," + rect.Width.ToString());
-                int width = w == 0 ? rect.Right - rect.Left : w;
-                int height = h == 0 ? rect.Bottom - rect.Top : h;
+                int width = (w == 0 ? rect.Right - rect.Left : w) ;
+                int height = (h == 0 ? rect.Bottom - rect.Top : h) ;
+                //MessageBox.Show(width.ToString() + "," + rect.Left.ToString() + "," +height.ToString());
                 Bitmap QQPic = new Bitmap(width, height );
                 
                 //MessageBox.Show((rect.Width - rect.Left).ToString() + "，" + (rect.Height - rect.Top).ToString());
@@ -218,13 +228,18 @@ namespace WindowsContronlDemov0._0._1
                 BitBlt(hdc2, 0, 0, width, height, hdc1, 0, 0, 13369376);
                 g1.ReleaseHdc(hdc2);  //释放掉Bitmap的DC  
                 string filename = @".\pic\"+count + ".jpg";
-                //QQPic.Save(filename, System.Drawing.Imaging.ImageFormat.Jpeg);
+                QQPic.Save(filename, System.Drawing.Imaging.ImageFormat.Jpeg);
                 count++;
                 return QQPic;
                 //以JPG文件格式保存  
             }
             return null;
             
+        }
+
+        static public int get_handle_by_name(string windowName)
+        {
+            return (int)FindWindow(null, windowName);
         }
     }
 }

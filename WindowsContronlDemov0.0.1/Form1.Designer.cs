@@ -49,156 +49,163 @@ namespace WindowsContronlDemov0._0._1
             this.label4 = new System.Windows.Forms.Label();
             this.imageView = new System.Windows.Forms.PictureBox();
             this.capturePic = new System.Windows.Forms.Button();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.W = new System.Windows.Forms.TextBox();
-            this.H = new System.Windows.Forms.TextBox();
+            this.script = new System.Windows.Forms.TextBox();
+            this.run = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
+            this.log1 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.imageView)).BeginInit();
             this.SuspendLayout();
             // 
             // nowChoose
             // 
             this.nowChoose.FormattingEnabled = true;
-            this.nowChoose.Location = new System.Drawing.Point(152, 13);
+            this.nowChoose.Location = new System.Drawing.Point(98, 46);
             this.nowChoose.Name = "nowChoose";
-            this.nowChoose.Size = new System.Drawing.Size(115, 26);
+            this.nowChoose.Size = new System.Drawing.Size(69, 20);
             this.nowChoose.TabIndex = 4;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(12, 16);
+            this.label1.Location = new System.Drawing.Point(14, 48);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(134, 18);
+            this.label1.Size = new System.Drawing.Size(89, 12);
             this.label1.TabIndex = 5;
             this.label1.Text = "现在干的事情：";
             // 
             // window_name
             // 
             this.window_name.AutoSize = true;
-            this.window_name.Location = new System.Drawing.Point(295, 19);
+            this.window_name.Location = new System.Drawing.Point(177, 13);
             this.window_name.Name = "window_name";
-            this.window_name.Size = new System.Drawing.Size(98, 18);
+            this.window_name.Size = new System.Drawing.Size(65, 12);
             this.window_name.TabIndex = 8;
             this.window_name.Text = "窗口句柄：";
             this.window_name.Click += new System.EventHandler(this.window_name_Click);
             // 
             // textBox_window_name
             // 
-            this.textBox_window_name.Location = new System.Drawing.Point(399, 16);
+            this.textBox_window_name.Location = new System.Drawing.Point(239, 11);
             this.textBox_window_name.Name = "textBox_window_name";
-            this.textBox_window_name.Size = new System.Drawing.Size(152, 28);
+            this.textBox_window_name.Size = new System.Drawing.Size(92, 21);
             this.textBox_window_name.TabIndex = 9;
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(574, 19);
+            this.label2.Location = new System.Drawing.Point(345, 19);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(62, 18);
+            this.label2.Size = new System.Drawing.Size(41, 12);
             this.label2.TabIndex = 10;
             this.label2.Text = "日志：";
+            this.label2.Visible = false;
             // 
             // _log
             // 
             this._log.AutoSize = true;
-            this._log.Location = new System.Drawing.Point(636, 16);
+            this._log.Location = new System.Drawing.Point(383, 17);
             this._log.Name = "_log";
-            this._log.Size = new System.Drawing.Size(0, 18);
+            this._log.Size = new System.Drawing.Size(0, 12);
             this._log.TabIndex = 11;
+            this._log.Visible = false;
             // 
             // textBox_MouseY
             // 
-            this.textBox_MouseY.Location = new System.Drawing.Point(399, 106);
+            this.textBox_MouseY.Location = new System.Drawing.Point(239, 71);
             this.textBox_MouseY.Name = "textBox_MouseY";
-            this.textBox_MouseY.Size = new System.Drawing.Size(152, 28);
+            this.textBox_MouseY.Size = new System.Drawing.Size(92, 21);
             this.textBox_MouseY.TabIndex = 15;
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(295, 109);
+            this.label3.Location = new System.Drawing.Point(177, 73);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(107, 18);
+            this.label3.Size = new System.Drawing.Size(71, 12);
             this.label3.TabIndex = 14;
             this.label3.Text = "鼠标坐标Y：";
             // 
             // textBox_MouseX
             // 
-            this.textBox_MouseX.Location = new System.Drawing.Point(399, 62);
+            this.textBox_MouseX.Location = new System.Drawing.Point(239, 41);
             this.textBox_MouseX.Name = "textBox_MouseX";
-            this.textBox_MouseX.Size = new System.Drawing.Size(152, 28);
+            this.textBox_MouseX.Size = new System.Drawing.Size(92, 21);
             this.textBox_MouseX.TabIndex = 13;
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(295, 65);
+            this.label4.Location = new System.Drawing.Point(177, 43);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(98, 18);
+            this.label4.Size = new System.Drawing.Size(65, 12);
             this.label4.TabIndex = 12;
             this.label4.Text = "鼠标坐标X:";
             // 
             // imageView
             // 
-            this.imageView.Location = new System.Drawing.Point(37, 170);
+            this.imageView.Location = new System.Drawing.Point(23, 121);
             this.imageView.Name = "imageView";
-            this.imageView.Size = new System.Drawing.Size(851, 318);
+            this.imageView.Size = new System.Drawing.Size(669, 406);
             this.imageView.TabIndex = 16;
             this.imageView.TabStop = false;
             // 
             // capturePic
             // 
-            this.capturePic.Location = new System.Drawing.Point(15, 56);
+            this.capturePic.Location = new System.Drawing.Point(512, 11);
             this.capturePic.Name = "capturePic";
-            this.capturePic.Size = new System.Drawing.Size(83, 27);
+            this.capturePic.Size = new System.Drawing.Size(50, 18);
             this.capturePic.TabIndex = 17;
             this.capturePic.Text = "截图";
             this.capturePic.UseVisualStyleBackColor = true;
             this.capturePic.Click += new System.EventHandler(this.capturePic_Click);
             // 
-            // label5
+            // script
             // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(32, 98);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(26, 18);
-            this.label5.TabIndex = 18;
-            this.label5.Text = "W:";
+            this.script.Location = new System.Drawing.Point(346, 37);
+            this.script.Multiline = true;
+            this.script.Name = "script";
+            this.script.Size = new System.Drawing.Size(158, 60);
+            this.script.TabIndex = 23;
             // 
-            // label6
+            // run
             // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(33, 128);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(26, 18);
-            this.label6.TabIndex = 19;
-            this.label6.Text = "H:";
+            this.run.Location = new System.Drawing.Point(512, 39);
+            this.run.Name = "run";
+            this.run.Size = new System.Drawing.Size(20, 58);
+            this.run.TabIndex = 24;
+            this.run.Text = "执行";
+            this.run.UseVisualStyleBackColor = true;
+            this.run.Click += new System.EventHandler(this.run_Click);
             // 
-            // W
+            // button1
             // 
-            this.W.Location = new System.Drawing.Point(64, 95);
-            this.W.Name = "W";
-            this.W.Size = new System.Drawing.Size(159, 28);
-            this.W.TabIndex = 20;
+            this.button1.Location = new System.Drawing.Point(584, 32);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 25;
+            this.button1.Text = "演示";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click_1);
             // 
-            // H
+            // log1
             // 
-            this.H.Location = new System.Drawing.Point(64, 125);
-            this.H.Name = "H";
-            this.H.Size = new System.Drawing.Size(159, 28);
-            this.H.TabIndex = 21;
+            this.log1.AutoSize = true;
+            this.log1.Location = new System.Drawing.Point(389, 19);
+            this.log1.Name = "log1";
+            this.log1.Size = new System.Drawing.Size(41, 12);
+            this.log1.TabIndex = 26;
+            this.log1.Text = "label5";
             // 
             // Form1
             // 
-            this.AutoScaleBaseSize = new System.Drawing.Size(10, 21);
+            this.AutoScaleBaseSize = new System.Drawing.Size(6, 14);
             this.AutoScroll = true;
             this.AutoSize = true;
-            this.ClientSize = new System.Drawing.Size(900, 500);
-            this.Controls.Add(this.H);
-            this.Controls.Add(this.W);
-            this.Controls.Add(this.label6);
-            this.Controls.Add(this.label5);
+            this.ClientSize = new System.Drawing.Size(715, 556);
+            this.Controls.Add(this.log1);
+            this.Controls.Add(this.button1);
+            this.Controls.Add(this.run);
+            this.Controls.Add(this.script);
             this.Controls.Add(this.capturePic);
             this.Controls.Add(this.imageView);
             this.Controls.Add(this.textBox_MouseY);
@@ -213,7 +220,7 @@ namespace WindowsContronlDemov0._0._1
             this.Controls.Add(this.nowChoose);
             this.MinimizeBox = false;
             this.Name = "Form1";
-            this.Text = "C#捕捉以后屏幕！";
+            this.Text = "windowsContronl";
             this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.imageView)).EndInit();
             this.ResumeLayout(false);
@@ -234,10 +241,10 @@ namespace WindowsContronlDemov0._0._1
         private Label label4;
         private PictureBox imageView;
         private Button capturePic;
-        private Label label5;
-        private Label label6;
-        private TextBox W;
-        private TextBox H;
+        private TextBox script;
+        private Button run;
+        private Button button1;
+        private Label log1;
     }
 }
 

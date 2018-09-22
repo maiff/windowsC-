@@ -8,17 +8,18 @@ using System.Drawing.Imaging;
 using System.Runtime.InteropServices;
 using System.Text;
 using System.Collections.Generic;
+using System.IO;
 
 namespace WindowsContronlDemov0._0._1
 {
-    public partial class Form1 : Form
+    public partial class Form1 : MetroFramework.Forms.MetroForm
     {
         HotKeys hot = new HotKeys();
         private int now_choose_index;
         Log log = new Log();
         private List<ComboboxItem> items;
 
-        private int _now_handle_hwnd = 0;
+        public int _now_handle_hwnd = 0;
         public int now_handle_hwnd
         {
             get {
@@ -39,7 +40,7 @@ namespace WindowsContronlDemov0._0._1
             set
             {
                 this.log.set_log(value);
-                this._log.Text = value;
+                this.log1.Text = value;
             }
         }
         public Form1()
@@ -54,6 +55,14 @@ namespace WindowsContronlDemov0._0._1
                     int hwnd = WindowLike.get_handle();
                     //MessageBox.Show(s[0],s[1]);
                     this.now_handle_hwnd = hwnd;
+                    Store.hwdl = hwnd;
+                    System.Drawing.Rectangle rec = Screen.GetWorkingArea(this);
+
+                    int SH = rec.Height;
+                        
+                    int SW = System.Windows.Forms.SystemInformation.WorkingArea.Width;
+                    Console.WriteLine(Screen.PrimaryScreen.Bounds.Width.ToString());
+                    //Console.WriteLine(WindowLike.get_handle_by_name("调整大小和扭曲"));
                     break;
                 case 1:
                     this.capture();
@@ -141,6 +150,13 @@ namespace WindowsContronlDemov0._0._1
             this.nowChoose.DisplayMember = "Text";
             this.nowChoose.ValueMember = "Value";
             this.nowChoose.SelectedIndexChanged += new System.EventHandler(this.nowChoose_SelectedIndexChanged); // 防止初始化时触发事件
+
+
+            //Excel.GetExcelToDataTableBySheet("C:\\Users\\xfwan\\Desktop\\casco\\test_excel.xls", "Overlap_延续防护进路");
+            DataSet testExcel = Excel.GetExcelToDataTableBySheet("D:\\test.xls", "Overlap_延续防护进路");
+            this.now_log = testExcel.Tables[0].Rows[0][0].ToString();
+            Exec.run("echo 12345"); // 测试执行命令行
+            
         }
         private void init_Hot()
         {
@@ -186,23 +202,24 @@ namespace WindowsContronlDemov0._0._1
         {
             this.capture();
         }
-        private void capture()
+        public  void capture()
         {
             if (this.now_handle_hwnd == 0) MessageBox.Show("请先获取句柄等相关信息");
             else
             {
-                int w = this.W.Text == "" ? 0 : Int32.Parse(this.W.Text) ;
-                int h = this.H.Text == "" ? 0 : Int32.Parse(this.H.Text);
-                Bitmap pic = WindowLike.get_window_pic(new IntPtr(this.now_handle_hwnd), w, h);
+                Console.WriteLine(this.now_handle_hwnd);
+                Bitmap pic = WindowLike.get_window_pic(new IntPtr(this.now_handle_hwnd), 0, 0);
+               
                 if (pic != null)
                 {
 
                     this.now_log = "保存成功" + pic.Width.ToString() + "x" + pic.Height.ToString();
  
                     this.imageView.Image = pic;
-
-                    FormRect rect = new FormRect();
-                    rect = Util.getFormRect(this);
+                    this.imageView.Refresh();
+                    Console.WriteLine(this.now_handle_hwnd);
+                    //FormRect rect = new FormRect();
+                    //rect = Util.getFormRect(this);
 
                     //int oldWidth_imageView = this.imageView.Width;
                     //int oldHeight_imageView = this.imageView.Height;
@@ -213,7 +230,7 @@ namespace WindowsContronlDemov0._0._1
 
                     this.imageView.Height = pic.Height;
                     this.imageView.Width = pic.Width;
-
+                    this.Refresh();
 
                 }
 
@@ -223,6 +240,30 @@ namespace WindowsContronlDemov0._0._1
         private void window_name_Click(object sender, EventArgs e)
         {
 
+        }
+
+        Interpreter interpreter = new Interpreter();
+        private void run_Click(object sender, EventArgs e)
+        {
+            interpreter.interpreter(this.script.Text, this);
+
+
+        }
+
+        private void button1_Click_1(object sender, EventArgs e)
+        {
+            String scriptPath = @".\pic\script.txt";
+            if (File.Exists(scriptPath))
+            {
+                // string contents = File.ReadAllText(scriptPath);
+                // interpreter.interpreter(contents, this);
+                Store.setNow(1, 2);
+                int[] a = Store.getNow();
+                MessageBox.Show(a[0].ToString());
+            } else
+            {
+                MessageBox.Show("不存在脚本！");
+            }
         }
     }
 }
